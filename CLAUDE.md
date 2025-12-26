@@ -49,13 +49,20 @@ Config location: `~/.config/local-events-newsletter/config.yaml`
 - 100 free searches/month
 - Set `SERPAPI_KEY` environment variable
 
-### Secondary: Instagram Scraping
+### Secondary: Firecrawl (Venue Calendars)
+
+- JavaScript-rendered venue calendars
+- Better extraction than basic scraping
+- 500 free credits/month
+- Set `FIRECRAWL_API_KEY` environment variable (optional)
+
+### Tertiary: Instagram Scraping
 
 - Captures venue-specific events competitors miss
 - Great for music venues, galleries, local bars
 - Set `SCRAPECREATORS_KEY` environment variable (optional)
 
-### Tertiary: Web Scraping
+### Quaternary: Basic Web Scraping
 
 - Venue calendars and local aggregators
 - Free, no API key required
@@ -87,6 +94,7 @@ Set these in your shell profile or `.env` file:
 | Variable             | Required | Purpose                      |
 | -------------------- | -------- | ---------------------------- |
 | `SERPAPI_KEY`        | Yes      | Google Events API access     |
+| `FIRECRAWL_API_KEY`  | No       | Venue calendar scraping      |
 | `SCRAPECREATORS_KEY` | No       | Instagram scraping           |
 | `PREDICTHQ_KEY`      | No       | Premium event API (optional) |
 

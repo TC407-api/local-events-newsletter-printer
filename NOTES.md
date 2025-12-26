@@ -6,9 +6,11 @@ Enhanced the Local Events Newsletter Printer plugin with:
 
 - Jinja2 template engine (replacing Handlebars)
 - Self-healing resilience system (circuit breaker, retry, fallback, health)
-- Comprehensive test suite (90 tests, all passing)
+- Comprehensive test suite (106 tests, all passing)
 - Backwards compatible config migration (v1 -> v2)
 - Code quality fixes (refactored large functions, fixed bare excepts)
+- Firecrawl integration for better venue calendar scraping
+- Real newsletter generation with SerpApi
 
 ## Progress - ALL COMPLETE
 

@@ -7,7 +7,15 @@
       "env": {
         "SERPAPI_KEY": "${SERPAPI_KEY}",
         "PREDICTHQ_KEY": "${PREDICTHQ_KEY}",
-        "SCRAPECREATORS_KEY": "${SCRAPECREATORS_KEY}"
+        "SCRAPECREATORS_KEY": "${SCRAPECREATORS_KEY}",
+        "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}"
+      }
+    },
+    "firecrawl-mcp": {
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}"
       }
     }
   }

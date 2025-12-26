@@ -2,22 +2,57 @@ import asyncio
 import os
 from datetime import datetime, timedelta
 from servers.event_mcp.sources.serpapi import fetch_serpapi_events
+from servers.event_mcp.sources.firecrawl import fetch_firecrawl_events, FIRECRAWL_VENUE_URLS
 from servers.event_mcp.dedup import deduplicate
 from servers.event_mcp.template_engine import TemplateEngine
 
-async def main():
-    print('Fetching REAL events for Richmond, VA...')
-    events, stats = await fetch_serpapi_events(
+
+async def fetch_all_sources():
+    """Fetch events from all available sources in parallel."""
+    all_events = []
+
+    # SerpApi (primary source)
+    print('Fetching from SerpApi (Google Events)...')
+    serpapi_events, serpapi_stats = await fetch_serpapi_events(
         location='Richmond, VA',
         date_from=datetime.now().strftime('%Y-%m-%d'),
         date_to=(datetime.now() + timedelta(days=7)).strftime('%Y-%m-%d')
     )
-    print(f'Found {stats.count} events ({stats.status})')
-    if stats.error_message:
-        print(f'Error: {stats.error_message}')
-        return
+    print(f'  SerpApi: {serpapi_stats.count} events ({serpapi_stats.status})')
+    all_events.extend(serpapi_events)
+
+    # Firecrawl (venue calendars - if API key is set)
+    if os.environ.get('FIRECRAWL_API_KEY'):
+        print('Fetching from Firecrawl (venue calendars)...')
+        for venue_name, url in FIRECRAWL_VENUE_URLS[:3]:  # Limit to 3 venues for now
+            try:
+                fc_events, fc_stats = await fetch_firecrawl_events(
+                    url=url,
+                    venue_name=venue_name,
+                    default_city='Richmond',
+                    default_state='VA'
+                )
+                print(f'  {venue_name}: {fc_stats.count} events ({fc_stats.status})')
+                all_events.extend(fc_events)
+            except Exception as e:
+                print(f'  {venue_name}: Error - {str(e)}')
+    else:
+        print('Skipping Firecrawl (FIRECRAWL_API_KEY not set)')
+
+    return all_events
+
+
+async def main():
+    print('Fetching events for Richmond, VA...')
+    print('=' * 50)
+
+    events = await fetch_all_sources()
+
+    print('=' * 50)
+    print(f'Total events before dedup: {len(events)}')
+
     if not events:
-        print('No events returned')
+        print('No events found from any source')
         return
     
     result = deduplicate(events)
