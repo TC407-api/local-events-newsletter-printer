@@ -48,3 +48,6 @@ nul
 # Local config
 *.local.md
 .env.local
+
+# Generated newsletters
+newsletter_*.md
