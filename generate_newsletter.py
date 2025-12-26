@@ -71,9 +71,37 @@ async def main():
         }
     
     formatted = [fmt(e) for e in result.events]
-    music = [fmt(e) for e in result.events if 'music' in str(e.title).lower() or 'concert' in str(e.title).lower()]
-    food = [fmt(e) for e in result.events if any(w in str(e.title).lower() for w in ['food','beer','wine','brunch','drink'])]
-    arts = [fmt(e) for e in result.events if any(w in str(e.title).lower() for w in ['art','comedy','theater','gallery','museum'])]
+
+    # Music venues in Richmond
+    music_venues = ['camel', 'broadberry', 'national', 'canal', 'ember', 'tin pan',
+                    'irish pub', 'taphouse', 'galaxy', 'club']
+    music_keywords = ['music', 'concert', 'band', 'dj', 'karaoke', 'live', 'show',
+                      'hip hop', 'rap', 'reggae', 'jazz', 'rock', 'open mic', 'singer']
+
+    food_keywords = ['food', 'beer', 'wine', 'brunch', 'drink', 'tasting', 'dinner',
+                     'lunch', 'breakfast', 'brewery', 'cocktail', 'chef', 'restaurant']
+
+    arts_keywords = ['art', 'comedy', 'theater', 'theatre', 'gallery', 'museum',
+                     'puppet', 'festival', 'cultural', 'dance', 'film', 'exhibit',
+                     'kwanzaa', 'craft', 'poetry']
+
+    def is_music(e):
+        title_lower = str(e.title).lower()
+        venue_lower = str(e.venue.name).lower()
+        return (any(k in title_lower for k in music_keywords) or
+                any(v in venue_lower for v in music_venues))
+
+    def is_food(e):
+        title_lower = str(e.title).lower()
+        return any(k in title_lower for k in food_keywords)
+
+    def is_arts(e):
+        title_lower = str(e.title).lower()
+        return any(k in title_lower for k in arts_keywords)
+
+    music = [fmt(e) for e in result.events if is_music(e)]
+    food = [fmt(e) for e in result.events if is_food(e)]
+    arts = [fmt(e) for e in result.events if is_arts(e)]
     
     engine = TemplateEngine()
     now = datetime.now()
@@ -86,8 +114,11 @@ async def main():
         'food_events': food[:5],
         'arts_events': arts[:5],
         'other_events': formatted[3:10],
+        'location': 'Richmond, VA',
         'footer': 'Generated with Local Events Newsletter Printer'
     }
+
+    print(f'Categorized: {len(music)} music, {len(food)} food, {len(arts)} arts')
     
     output = engine.render('default.md', ctx)
     fname = f'newsletter_{now.strftime("%Y-%m-%d")}_REAL.md'

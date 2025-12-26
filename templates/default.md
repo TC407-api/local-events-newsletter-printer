@@ -20,14 +20,10 @@
 
 ### 🎵 Live Music & Concerts
 
-{% for day_group in music_events_by_day %}
-**{{ day_group.day }}**
-{% for event in day_group.events %}
+{% for event in music_events %}
 
-- **{{ event.title }}** - {{ event.time }} | {{ event.price }} | {{ event.venue.name }}{% if event.is_reggae %} 🌴{% endif %}
+- **{{ event.title }}** - {{ event.venue.name }}, {{ event.day }} {{ event.time }} ({{ event.price }})
   {% endfor %}
-
-{% endfor %}
 
 ### 🍺 Food & Drink
 
