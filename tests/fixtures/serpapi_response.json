@@ -1,0 +1,79 @@
+{
+  "search_metadata": {
+    "id": "test-search-id",
+    "status": "Success",
+    "json_endpoint": "https://serpapi.com/searches/test.json",
+    "created_at": "2025-01-13 10:00:00 UTC",
+    "processed_at": "2025-01-13 10:00:01 UTC",
+    "google_events_url": "https://www.google.com/search?q=events+in+richmond+va",
+    "total_time_taken": 1.5
+  },
+  "search_parameters": {
+    "engine": "google_events",
+    "q": "events in Richmond, VA",
+    "hl": "en"
+  },
+  "events_results": [
+    {
+      "title": "Reggae Night at The Camel",
+      "date": {
+        "start_date": "Jan 17",
+        "when": "Friday, Jan 17, 9 PM"
+      },
+      "address": ["The Camel", "1621 W Broad St", "Richmond, VA 23220"],
+      "link": "https://thecamel.com/events/reggae-night",
+      "description": "Weekly reggae showcase featuring local and touring artists. Good vibes guaranteed.",
+      "thumbnail": "https://example.com/reggae-night-thumb.jpg",
+      "venue": {
+        "name": "The Camel",
+        "rating": 4.5,
+        "reviews": 234
+      }
+    },
+    {
+      "title": "Jazz Brunch",
+      "date": {
+        "start_date": "Jan 19",
+        "when": "Sunday, Jan 19, 11 AM – 2 PM"
+      },
+      "address": ["Lemaire", "101 W Franklin St", "Richmond, VA 23219"],
+      "link": "https://lemairerestaurant.com/brunch",
+      "description": "Elegant Sunday brunch with live jazz quartet in the historic Jefferson Hotel.",
+      "ticket_info": [
+        {
+          "source": "OpenTable",
+          "link": "https://opentable.com/lemaire",
+          "price": "$45"
+        }
+      ]
+    },
+    {
+      "title": "Indie Rock Night",
+      "date": {
+        "start_date": "Jan 18",
+        "when": "Saturday, Jan 18, 8 PM"
+      },
+      "address": ["The Broadberry", "2729 W Broad St", "Richmond, VA 23220"],
+      "link": "https://thebroadberry.com/events/indie-rock",
+      "description": "Local indie bands showcase featuring three Richmond acts.",
+      "ticket_info": [
+        {
+          "source": "Eventbrite",
+          "link": "https://eventbrite.com/indie-rock",
+          "price": "$15"
+        }
+      ]
+    },
+    {
+      "title": "Food Truck Friday",
+      "date": {
+        "start_date": "Jan 17",
+        "when": "Friday, Jan 17, 5 PM – 9 PM"
+      },
+      "address": ["Brown's Island", "Richmond, VA"],
+      "link": "https://venturerichmond.com/food-truck-friday",
+      "description": "Richmond's favorite food trucks gather riverside with live music and craft beer.",
+      "thumbnail": "https://example.com/food-truck-thumb.jpg"
+    }
+  ]
+}

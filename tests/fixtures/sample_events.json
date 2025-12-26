@@ -1,0 +1,72 @@
+[
+  {
+    "source": "serpapi",
+    "source_id": "serp-001",
+    "title": "Reggae Night at The Camel",
+    "description": "Weekly reggae showcase featuring local and touring artists",
+    "start_time": "2025-01-17T21:00:00",
+    "venue": {
+      "name": "The Camel",
+      "address": "1621 W Broad St",
+      "city": "Richmond",
+      "state": "VA",
+      "instagram_handle": "@thecamelrva"
+    },
+    "category": "music",
+    "subcategories": ["reggae", "live_music"],
+    "price": "$12",
+    "ticket_url": "https://thecamel.com/events/reggae-night",
+    "confidence": 0.95
+  },
+  {
+    "source": "instagram",
+    "source_id": "ig-001",
+    "title": "REGGAE NIGHT @ The Camel",
+    "description": null,
+    "start_time": "2025-01-17T21:00:00",
+    "venue": {
+      "name": "The Camel",
+      "city": "Richmond",
+      "state": "VA",
+      "instagram_handle": "@thecamelrva"
+    },
+    "category": "music",
+    "subcategories": ["reggae"],
+    "price": "$12",
+    "confidence": 0.8
+  },
+  {
+    "source": "serpapi",
+    "source_id": "serp-002",
+    "title": "Jazz Brunch at Lemaire",
+    "description": "Sunday jazz brunch with live quartet in the Jefferson Hotel",
+    "start_time": "2025-01-19T11:00:00",
+    "venue": {
+      "name": "Lemaire",
+      "address": "101 W Franklin St",
+      "city": "Richmond",
+      "state": "VA"
+    },
+    "category": "music",
+    "subcategories": ["jazz", "brunch"],
+    "price": "$45",
+    "ticket_url": "https://lemairerestaurant.com/brunch",
+    "confidence": 0.92
+  },
+  {
+    "source": "web",
+    "source_id": "web-001",
+    "title": "Food Truck Friday",
+    "description": "Richmond's best mobile kitchens gather riverside with live music",
+    "start_time": "2025-01-17T17:00:00",
+    "venue": {
+      "name": "Brown's Island",
+      "city": "Richmond",
+      "state": "VA"
+    },
+    "category": "food_drink",
+    "subcategories": ["food_trucks", "outdoor"],
+    "price": "Free",
+    "confidence": 0.88
+  }
+]

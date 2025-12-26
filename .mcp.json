@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "event-aggregator": {
+      "command": "python",
+      "args": ["-m", "servers.event_mcp"],
+      "cwd": "${CLAUDE_PLUGIN_ROOT}",
+      "env": {
+        "SERPAPI_KEY": "${SERPAPI_KEY}",
+        "PREDICTHQ_KEY": "${PREDICTHQ_KEY}",
+        "SCRAPECREATORS_KEY": "${SCRAPECREATORS_KEY}"
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+# Example configuration for Local Events Newsletter Printer
+# Copy this to ~/.config/local-events-newsletter/config.yaml
+
+version: 2
+
+# Newsletter branding
+newsletter:
+  name: "RVA Live Music & Vibes"
+  tagline: "Your weekly guide to music and good vibes in Richmond"
+
+# Target location
+location:
+  city: "Richmond"
+  state: "VA"
+  radius_miles: 50  # Cover Richmond metro + surrounding areas
+
+# Event categories to include
+# Options: music, reggae, food_drink, arts, nightlife, community, sports, family
+categories:
+  - music
+  - reggae
+  - food_drink
+  - arts
+
+# Event sources
+sources:
+  # Instagram venue handles (requires SCRAPECREATORS_KEY)
+  instagram:
+    - handle: "@thecamelrva"
+      name: "The Camel"
+      type: "music_venue"
+
+    - handle: "@thebroadberry"
+      name: "The Broadberry"
+      type: "music_venue"
+
+    - handle: "@thenationalva"
+      name: "The National"
+      type: "music_venue"
+
+    - handle: "@canalhallrva"
+      name: "Canal Hall"
+      type: "music_venue"
+
+  # Venue calendar websites
+  web:
+    - url: "https://thenationalva.com/events"
+      name: "The National"
+
+    - url: "https://thebroadberry.com/events"
+      name: "The Broadberry"
+
+# Deduplication settings
+deduplication:
+  threshold: 0.75  # 75% similarity = duplicate
+  weights:
+    title: 0.50
+    venue: 0.35
+    time: 0.15
+
+# Output preferences
+output:
+  format: markdown  # markdown | html
+  template: default
+  include_images: false  # Images increase file size
+  max_events_per_category: 15
+  highlight_count: 3  # Number of featured events
+
+# Classification settings
+classification:
+  review_threshold: 0.7  # Show events below this confidence for review
+  reggae_boost: true  # Prioritize reggae events in highlights

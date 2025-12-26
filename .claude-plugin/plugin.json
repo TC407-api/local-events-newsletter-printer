@@ -1,0 +1,21 @@
+{
+  "name": "local-events-newsletter-printer",
+  "version": "2.0.0",
+  "description": "Generate local event newsletters with hybrid API + scraping. Focus: RVA Live Music & Vibes - concerts, reggae, food events.",
+  "author": {
+    "name": "Travis",
+    "email": ""
+  },
+  "homepage": "",
+  "keywords": [
+    "events",
+    "newsletter",
+    "local",
+    "music",
+    "reggae",
+    "richmond",
+    "rva",
+    "concerts"
+  ],
+  "mcpServers": "../.mcp.json"
+}

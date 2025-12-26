@@ -1,0 +1,45 @@
+[project]
+name = "local-events-newsletter-printer"
+version = "2.0.0"
+description = "Claude Code plugin for generating local event newsletters - RVA Live Music & Vibes"
+authors = [{ name = "Travis" }]
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+dependencies = [
+    "httpx>=0.27.0",
+    "pydantic>=2.0.0",
+    "rapidfuzz>=3.0.0",
+    "python-dateutil>=2.8.0",
+    "beautifulsoup4>=4.12.0",
+    "pyyaml>=6.0.0",
+    "jinja2>=3.1.0",
+    "structlog>=24.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.5.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["servers"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
