@@ -14,6 +14,7 @@ from typing import Optional
 import re
 
 from ..models import Event, Venue, FetchStats
+from .url_validator import validate_url_for_scraping, SSRFError
 
 
 # Common selectors for event listing pages
@@ -67,6 +68,17 @@ async def scrape_event_page(
     """
     start_time = datetime.now()
     selectors = custom_selectors or DEFAULT_SELECTORS
+
+    # Validate URL for SSRF protection before making request
+    try:
+        url = validate_url_for_scraping(url)
+    except SSRFError as e:
+        return [], FetchStats(
+            source="web",
+            count=0,
+            status="error",
+            error_message=f"URL validation failed: {e}"
+        )
 
     try:
         async with httpx.AsyncClient(timeout=30.0) as client:
