@@ -17,6 +17,7 @@ from typing import Optional
 import re
 
 from ..models import Event, Venue, FetchStats
+from .url_validator import validate_url_for_scraping, SSRFError
 
 
 FIRECRAWL_API_URL = "https://api.firecrawl.dev/v1"
@@ -47,6 +48,17 @@ async def fetch_firecrawl_events(
             count=0,
             status="error",
             error_message="FIRECRAWL_API_KEY not set"
+        )
+
+    # Validate URL for SSRF protection before making request
+    try:
+        url = validate_url_for_scraping(url)
+    except SSRFError as e:
+        return [], FetchStats(
+            source="firecrawl",
+            count=0,
+            status="error",
+            error_message=f"URL validation failed: {e}"
         )
 
     start_time = datetime.now()
@@ -153,6 +165,17 @@ async def crawl_venue_site(
             count=0,
             status="error",
             error_message="FIRECRAWL_API_KEY not set"
+        )
+
+    # Validate URL for SSRF protection before making request
+    try:
+        url = validate_url_for_scraping(url)
+    except SSRFError as e:
+        return [], FetchStats(
+            source="firecrawl",
+            count=0,
+            status="error",
+            error_message=f"URL validation failed: {e}"
         )
 
     start_time = datetime.now()
